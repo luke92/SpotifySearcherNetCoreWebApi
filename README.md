@@ -4,7 +4,7 @@ Searcher for Spotify using Developer Spotify docs
 # Spotify DOCS
 
 # App Spotify
-https://developer.spotify.com/dashboard
+https://developer.spotify.com/dashboard <br>
 https://developer.spotify.com/documentation/general/guides/app-settings/
 
 # Authorization
