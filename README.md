@@ -1,2 +1,2 @@
-# patagonianChallengeNetDeveloper
-Challenge Net Developer of Patagonian IT
+# SpotifySearcherNetCoreWebApi
+Searcher for Spotify using Developer Spotify docs
