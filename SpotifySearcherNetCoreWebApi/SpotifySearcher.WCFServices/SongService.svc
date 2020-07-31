@@ -1,0 +1,1 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="SpotifySearcher.WCFServices.SongService" CodeBehind="SongService.svc.cs" %>
