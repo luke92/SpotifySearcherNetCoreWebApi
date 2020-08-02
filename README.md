@@ -12,3 +12,10 @@ https://developer.spotify.com/documentation/general/guides/authorization-guide/#
 
 # Get a Track
 https://developer.spotify.com/documentation/web-api/reference/tracks/get-track/
+
+# Search
+https://developer.spotify.com/documentation/web-api/reference/search/search/
+
+# Browse
+https://developer.spotify.com/documentation/web-api/reference/browse/
+
