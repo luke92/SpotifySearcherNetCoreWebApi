@@ -1,6 +1,6 @@
 ﻿using SpotifySearcher.WCFServices.Modules.Song.Models;
 using System.ServiceModel;
-
+using System.Threading.Tasks;
 
 namespace SpotifySearcher.WCFServices
 {
@@ -9,6 +9,6 @@ namespace SpotifySearcher.WCFServices
     public interface ISongService
     {
         [OperationContract]
-        SongsModel GetListSongsBasedCategory(string category);
+        Task<SongsModel> GetListSongsBasedCategory(string category);
     }
 }

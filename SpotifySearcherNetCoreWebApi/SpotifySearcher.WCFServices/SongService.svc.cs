@@ -1,4 +1,6 @@
-﻿using SpotifySearcher.WCFServices.Modules.Song.Models;
+﻿using SpotifySearcher.WCFServices.Modules.Song;
+using SpotifySearcher.WCFServices.Modules.Song.Models;
+using System.Threading.Tasks;
 
 namespace SpotifySearcher.WCFServices
 {
@@ -6,19 +8,16 @@ namespace SpotifySearcher.WCFServices
     // NOTA: para iniciar el Cliente de prueba WCF para probar este servicio, seleccione SongService.svc o SongService.svc.cs en el Explorador de soluciones e inicie la depuración.
     public class SongService : ISongService
     {
-        public SongsModel GetListSongsBasedSongTitle(string SongTitle)
+        private readonly ISongModule _songModule;
+        
+        public SongService()
         {
-            return new SongsModel();
+            _songModule = new SongModule();
         }
 
-        public SongModel GetSong(string SongId)
+        public async Task<SongsModel> GetListSongsBasedCategory(string category)
         {
-            return new SongModel();
-        }
-
-        public SongsModel GetListSongsBasedCategory(string category)
-        {
-            return new SongsModel();
+            return await _songModule.GetListSongsBasedCategory(category);
         }
     }
 }
