@@ -100,7 +100,14 @@
     <Compile Include="Modules\Authentication\Models\AuthenticationResponse.cs" />
     <Compile Include="Modules\Authentication\Models\TokenResponseError.cs" />
     <Compile Include="Modules\Authentication\Models\TokenResponseOk.cs" />
+    <Compile Include="Modules\Category\CategoryModule.cs" />
+    <Compile Include="Modules\Category\ICategoryModule.cs" />
+    <Compile Include="Modules\Category\Models\CategoriesModel.cs" />
+    <Compile Include="Modules\Category\Models\CategoryModel.cs" />
+    <Compile Include="Modules\PlayList\Models\PlayListsModel.cs" />
     <Compile Include="Modules\Shared\Models\ErrorModel.cs" />
+    <Compile Include="Modules\Shared\Models\ExternalUrlsModel.cs" />
+    <Compile Include="Modules\Shared\Models\ImageModel.cs" />
     <Compile Include="Modules\Song\ISongModule.cs" />
     <Compile Include="Modules\Song\Models\SongModel.cs" />
     <Compile Include="Modules\Song\Models\SongReducedModel.cs" />

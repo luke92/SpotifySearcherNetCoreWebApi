@@ -14,6 +14,8 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
     public class AuthenticationModule : IAuthenticationModule
     {
         private readonly HttpClient _client;
+        private string token = "";
+
 
         public AuthenticationModule()
         {
@@ -58,6 +60,21 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
             }
             
             return authenticationResponse;
+        }
+
+        public HttpClient GetHttpClient()
+        {
+            HttpClientHandler handler = new HttpClientHandler()
+            {
+                AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
+            };
+            var httpClient = new HttpClient(handler);
+
+            httpClient.DefaultRequestHeaders.Authorization =
+            new AuthenticationHeaderValue("Bearer", "Your Oauth token");
+
+            return httpClient;
+
         }
     }
 }
