@@ -10,8 +10,6 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
 {
     public interface IAuthenticationModule
     {
-        Task<AuthenticationResponse> Authenticate();
-
-        HttpClient GetHttpClient();
+        Task<HttpClient> GetHttpClient();
     }
 }

@@ -112,6 +112,7 @@
     <Compile Include="Modules\Song\Models\SongModel.cs" />
     <Compile Include="Modules\Song\Models\SongReducedModel.cs" />
     <Compile Include="Modules\Song\Models\SongsModel.cs" />
+    <Compile Include="Modules\Song\Models\TracksModel.cs" />
     <Compile Include="Modules\Song\SongModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SongService.svc.cs">

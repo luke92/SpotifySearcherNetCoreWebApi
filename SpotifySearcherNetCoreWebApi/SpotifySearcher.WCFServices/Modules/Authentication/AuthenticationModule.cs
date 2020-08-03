@@ -14,8 +14,8 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
     public class AuthenticationModule : IAuthenticationModule
     {
         private readonly HttpClient _client;
-        private string token = "";
 
+        private string _token;
 
         public AuthenticationModule()
         {
@@ -25,8 +25,10 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
             {
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             };
-            _client = new HttpClient(handler);
-            _client.BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURLAPIAuth"]);
+            _client = new HttpClient(handler)
+            {
+                BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURLAPIAuth"])
+            };
             _client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
             _client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
@@ -34,13 +36,15 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", Convert.ToBase64String(byteArray));
         }
 
-        public async Task<AuthenticationResponse> Authenticate()
+        private async Task<AuthenticationResponse> Authenticate()
         {
             var authenticationResponse = new AuthenticationResponse();
             string url = "/api/token";
-            
-            var nvc = new List<KeyValuePair<string, string>>();
-            nvc.Add(new KeyValuePair<string, string>("grant_type", "client_credentials"));
+
+            var nvc = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("grant_type", "client_credentials")
+            };
             var req = new HttpRequestMessage(HttpMethod.Post, url) { Content = new FormUrlEncodedContent(nvc) };
             var response = await _client.SendAsync(req);
 
@@ -50,6 +54,7 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
                 var tokenOk = JsonConvert.DeserializeObject<TokenResponseOk>(json);
                 authenticationResponse.ResponseOk = tokenOk;
                 authenticationResponse.IsAuthenticated = true;
+                _token = authenticationResponse.ResponseOk.Access_token;
             }
             else
             {
@@ -62,16 +67,22 @@ namespace SpotifySearcher.WCFServices.Modules.Authentication
             return authenticationResponse;
         }
 
-        public HttpClient GetHttpClient()
+        public async Task<HttpClient> GetHttpClient()
         {
+            await Authenticate();
             HttpClientHandler handler = new HttpClientHandler()
             {
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate
             };
-            var httpClient = new HttpClient(handler);
+            var httpClient = new HttpClient(handler)
+            {
+                BaseAddress = new Uri(ConfigurationManager.AppSettings["BaseURLAPI"])
+            };
 
             httpClient.DefaultRequestHeaders.Authorization =
-            new AuthenticationHeaderValue("Bearer", "Your Oauth token");
+            new AuthenticationHeaderValue("Bearer", _token);
+
+            httpClient.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
 
             return httpClient;
 
