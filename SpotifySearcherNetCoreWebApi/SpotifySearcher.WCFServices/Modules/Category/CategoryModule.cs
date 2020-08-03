@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Web;
 using Newtonsoft.Json;
 using SpotifySearcher.WCFServices.Modules.Authentication;
 using SpotifySearcher.WCFServices.Modules.PlayList.Models;
